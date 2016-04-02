@@ -30,8 +30,113 @@ Difficulty : Medium
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+int *gm1(int *arr, int len, int *res)
+{
+	int flag = 0;
+	for (int i = 1; i < len; i++)
+	{
+		float num1 = arr[i]*1.0 / arr[i - 1];
+		float num2 = arr[i + 1]*1.0 / arr[i];
+		if (num1==num2)
+		{
+			flag++;
+			if (res[4] == -100) res[4] = i - 1;
+			res[5] = i + 1;
+		}
+		else if (flag != 0) break;
+	}
+	return res;
+}
+int * am1(int *arr, int len, int *res)
+{
+	int flag = 0;
+	for (int i = 1; i < len; i++)
+	{
+		if ((arr[i] - arr[i - 1]) == (arr[i + 1] - arr[i]))
+		{
+			flag++;
+			if (res[0] == -100) res[0] = i - 1;
+			res[1] = i + 1;
+		}
+		else if (flag!=0) break;
+	}
+	return res;
+}
+int * am2(int *arr, int len, int *res)
+{
+	/*int i = res[1];
+	if ((arr[i] - arr[i - 1]) == (arr[i + 1] - arr[i]))
+	{
+		for ( i = res[1]; i < len; i++)
+		{
+			if ((arr[i] - arr[i - 1]) == (arr[i + 1] - arr[i]))
+			{
+				if (res[2] == -100) res[2] = i - 1;
+				res[3] = i + 1;
+			}
+			else break;
+		}
+	}
+	else { res = gm1(arr, len, res); }
+	i = res[5];
+	if ((arr[i] - arr[i - 1]) == (arr[i + 1] - arr[i]))
+	{
+		for ( i = res[5]; i < len; i++)
+		{
+			if ((arr[i] - arr[i - 1]) == (arr[i + 1] - arr[i]))
+			{
+				if (res[2] == -100) res[2] = i - 1;
+				res[3] = i + 1;
+			}
+			else break;
+		}
+	}
+	return res;*/
+	int flag = 0;
+	for (int i = res[1]; i < len; i++)
+	{
+		if ((arr[i] - arr[i - 1]) == (arr[i + 1] - arr[i]))
+		{
+			flag++;
+			if (res[2] == -100) res[2] = i - 1;
+			res[3] = i + 1;
+		}
+		else if (flag != 0) break;
+	}
+	return res;
+}
 
+int validate(int *res)
+{
+	for (int i = 0; i < 6; i++)
+	{
+		if (res[i] == -100)return 0;
+	}
+	return 1;
+}
 int * find_sequences(int *arr, int len){
 	//Return final array which has 6indexes [AP1_S,AP1_E,AP2_S,AP2_E,GP1_S,GP2_E]
-	return NULL;
+	if(arr==NULL || len<0) return NULL;
+	int *res = (int *)malloc(6 * sizeof(int));
+	int i;
+	for (i = 0; i < 6; i++)
+	{
+		res[i] = -100;
+	}
+	res = am1(arr, len, res);
+	res = am2(arr, len, res);
+	res = gm1(arr, len, res);
+	//res = gm1(arr, len, res);
+	/*if(validate(res)) return res;
+	res = am1(arr, len, res);
+	res = gm1(arr, len, res);
+	res = am2(arr, len, res);
+	if (validate(res)) return res;
+	res = gm1(arr, len, res);
+	res = am1(arr, len, res);
+	res = am2(arr, len, res);*/
+	return res;
+	//int i, j,am1=-100,am2,am3=-100,am4,gm1=-100,gm2;
+	
+	
 }

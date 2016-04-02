@@ -94,4 +94,19 @@ int main(){
 	printf("Total Days - %d\n",days);
 	*/
 	//Test Concat4 Strings
+	int i;
+	int arr[8] = { 1, 2, 4, 8, 12, 16, 21, 26 };
+	int arr1[10] = { 1, 3, 5, 7, 2, 4, 8, 16 ,18 ,20 };
+	int arr2[10] = { 10 ,15, 20, 30, 50, 70, 100, 200, 400, 800 };
+	int *res = find_sequences(arr, 8);
+	for ( i = 0; i < 6; i++)
+		printf("%d ", res[i]);
+	res = find_sequences(arr1, 10);
+	for ( i = 0; i < 6; i++)
+		printf("%d ", res[i]);
+	res = find_sequences(arr2, 10);
+	for ( i = 0; i < 6; i++)
+		printf("%d ", res[i]);
+	getchar();
+	return 0;
 }

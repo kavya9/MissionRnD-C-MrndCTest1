@@ -69,10 +69,38 @@ void printSll(struct node *head,int len){
 
 void make_it_circular(struct node *head){
 	//Makes a Normal SLL circular ,Make Last->next=head;
-
+	struct node* temp = head;
+	while (temp->next != NULL)
+	{
+		temp = temp->next;
+	}
+	temp->next = head;
 }
 
 //End of Helper Functions
+/*struct node * create(struct node * head)
+{
+	int i, n;
+	struct node *prev;
+	struct node * newNode;
+	int size;
+	scanf("%d")
+	for (i = 0; i < size; i++)
+	{
+		newNode = (struct node*)malloc(sizeof(struct node));
+		newNode->data = givenList[i];
+		if (head == NULL)
+		{
+			head = newNode;
+			prev = head;
+		}
+		prev->next = newNode;
+		prev = newNode;
+		newNode->next = NULL;
+	}
+	newNode->next = head;
+	return head;
+}*/
 
 int main(){
 
